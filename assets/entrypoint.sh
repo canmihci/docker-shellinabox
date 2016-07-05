@@ -7,6 +7,17 @@ hex()
 	openssl rand -hex 8
 }
 
+echo "Handling CSS .." 
+# got styles.css loaded into /var/lib/shellinabox/ using the docker -v flag
+# appending the content of this upon individual css file "00_White On Black.css"
+# I wanted to remove the option to have black-on-white, so then I remove "00_Black On White.css"
+# and copy exact same of "00_White On Black.css" under the bane "Black on White"
+cat /var/lib/shellinabox/styles.css >> /etc/shellinabox/options-available/00_White\ On\ Black.css
+cp /etc/shellinabox/options-available/00_White\ On\ Black.css /etc/shellinabox/options-available/temp.css
+rm -rf /etc/shellinabox/options-available/00+Black\ on\ White.css
+mv /etc/shellinabox/options-available/temp.css /etc/shellinabox/options-available/00+Black\ on\ White.css
+#done.
+
 echo "Preparing container .."
 COMMAND="/usr/bin/shellinaboxd --debug --no-beep -u shellinabox -g shellinabox -c /var/lib/shellinabox -p ${SIAB_PORT} --user-css ${SIAB_USERCSS}"
 
