@@ -17,7 +17,7 @@ ENV SIAB_VERSION=2.19 \
   SIAB_PKGS=none \
   SIAB_SCRIPT=none
 
-RUN apt-get update && apt-get install -y openssl curl openssh-client sudo \
+RUN apt-get update && apt-get install -y nano screen openssl curl openssh-client sudo \
       shellinabox=${SIAB_VERSION} && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
